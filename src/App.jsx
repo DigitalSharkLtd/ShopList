@@ -589,3 +589,64 @@ const ProductItem = ({
   
   return (
     <div className={`flex items-center border p-1 rounded ${getItemStyle(item)}`}>
+      <div className="flex items-center justify-between w-full">
+        <div className="flex items-center">
+          <button 
+            onClick={() => toggleFavorite(item)}
+            className={`mr-1 ${starColor} hover:text-yellow-600`}
+          >
+            ★
+          </button>
+          
+          {!deleteMode && (
+            <button 
+              onClick={() => toggleItem(item)}
+              className={`relative w-7 h-4 flex items-center rounded-full p-1 mr-2
+                ${isSelected ? 'bg-amber-500' : 'bg-gray-300'}`}
+            >
+              <span 
+                className={`absolute left-0.5 bg-white w-3 h-3 rounded-full shadow transform transition-transform
+                  ${isSelected ? 'translate-x-3' : ''}`}
+              />
+            </button>
+          )}
+          <span className="font-medium">{item}</span>
+        </div>
+        
+        <div className="flex items-center">
+          {isSelected && !deleteMode && (
+            <div className="flex items-center space-x-1">
+              <input
+                type="number"
+                min="1"
+                value={shoppingList[originalName].amount}
+                onChange={(e) => updateAmount(item, e.target.value)}
+                className="w-14 p-1 border rounded text-center"
+              />
+              <select
+                value={shoppingList[originalName].unit}
+                onChange={(e) => updateUnit(item, e.target.value)}
+                className="w-14 p-1 border rounded"
+              >
+                {Object.keys(t.units).map(unit => (
+                  <option key={unit} value={unit}>{t.units[unit]}</option>
+                ))}
+              </select>
+            </div>
+          )}
+          
+          {deleteMode && (
+            <button 
+              onClick={() => removeProductFromView(item)}
+              className="text-red-500 font-bold px-2 ml-2 text-lg bg-red-100 rounded-full leading-none"
+            >
+              ×
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ShopList;
