@@ -34,6 +34,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages  # ✅ Correct key instead of "branch"
           publish_dir: ./build
-          branch: gh-pages  # Ensures deployment goes to GitHub Pages branch
           commit_message: "Deploy React app via GitHub Actions"
