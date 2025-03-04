@@ -3,12 +3,12 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main  # Укажите вашу основную ветку
+      - main  # Set your main branch
 
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write  # Allows GitHub Actions to push changes
   pages: write
   id-token: write
 
@@ -35,3 +35,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+          branch: gh-pages  # Ensures deployment goes to GitHub Pages branch
+          commit_message: "Deploy React app via GitHub Actions"
