@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ShopList from "./App";
+import App from "./App"; // ✅ Правильный импорт
 
 ReactDOM.render(
   <React.StrictMode>
-    <ShopList />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
